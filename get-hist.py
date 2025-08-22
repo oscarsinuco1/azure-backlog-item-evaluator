@@ -216,7 +216,7 @@ if __name__ == "__main__":
         invest_eval = evaluar_invest(texto)
         
         # Buscar la línea que contiene "Complejidad sugerida"
-        match = re.search(r"Complejidad sugerida:\s*([0-9]*\.?[0-9]+)", invest_eval)
+        match = re.search(r"\*\*Complejidad sugerida:\*\*\s*([0-9]+(?:\.[0-9]+)?)", invest_eval)
         if match:
             complejidad = float(match.group(1))
         else:
