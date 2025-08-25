@@ -16,6 +16,10 @@ import threading
 import itertools
 import time
 import os
+from dotenv import load_dotenv
+
+# Cargar archivo .env
+load_dotenv()
 # ========= CONFIG =========
 
 # Solicitar por input si no se pasó por flag
@@ -135,29 +139,23 @@ def estimar_dias(complejidad=1, capacidad_equipo=None, sprint_dias=10, dias_por_
 class MarkdownHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path == "/" or self.path.endswith(".md"):
-            with open("historias_invest.md", "r", encoding="utf-8") as f:
-                md_text = f.read()
-            html = markdown.markdown(md_text, extensions=["fenced_code", "tables"])
-
+            with open("index.html", "rb") as f:
+                content = f.read()
             self.send_response(200)
             self.send_header("Content-type", "text/html; charset=utf-8")
+            self.send_header("Content-length", str(len(content)))
             self.end_headers()
-            self.wfile.write(f"""
-                <html>
-                <head>
-                    <meta charset="utf-8">
-                    <title>Reporte Historias INVEST</title>
-                    <style>
-                        body {{ font-family: Arial, sans-serif; max-width: 900px; margin: auto; padding: 20px; }}
-                        h1, h2, h3 {{ color: #2c3e50; }}
-                        pre, code {{ background: #f4f4f4; padding: 5px; border-radius: 4px; }}
-                    </style>
-                </head>
-                <body>
-                    {html}
-                </body>
-                </html>
-            """.encode("utf-8"))
+            self.wfile.write(content)
+        if self.path == "/data":
+            with open("res.json", "r", encoding="utf-8") as f:
+                data = json.load(f)
+
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json; charset=utf-8")
+            self.end_headers()
+
+            # Convertir el diccionario/array a JSON string
+            self.wfile.write(json.dumps(data, ensure_ascii=False, indent=2).encode("utf-8"))
         else:
             self.send_error(404, "Archivo no encontrado")
 

@@ -1,3 +1,4 @@
 requests
 markdown
 openai
+python-dotenv
