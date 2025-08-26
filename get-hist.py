@@ -29,7 +29,7 @@ iteration_path = os.getenv("AZURE_ITERATION_PATH")
 pat = os.getenv("AZURE_PAT")
 openai_api_key = os.getenv("OPENAI_API_KEY")
 ado_api_version = "7.0"
-
+max_historias = int(os.getenv("HISTORIAS_MAX", 7))
 # Azure DevOps URLs
 wiql_url = f"https://dev.azure.com/{org}/{project}/_apis/wit/wiql?api-version={ado_api_version}"
 
@@ -199,7 +199,7 @@ class Loader:
 
 # === MAIN ===
 if __name__ == "__main__":
-    historias = obtener_historias()
+    historias = obtener_historias()[:max_historias]
     
     capacidad_equipo = {
         "carga": 20,               # 20% extra de carga
