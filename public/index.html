@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reporte Historias INVEST</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="setup-modal" class="setup-container">
+      <div class="setup-content">
+        <h1 id="setup-title"></h1>
+        <p id="setup-paragraph"></p>
+        <form id="setup-form">
+          <label for="hours-input"
+            >Horas para una historia de complejidad máxima (5):</label
+          >
+          <input
+            type="number"
+            id="hours-input"
+            value="16"
+            min="1"
+            step="0.5"
+            required
+          />
+          <button type="submit">Generar Reporte</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="container">
+      <header>
+        <div>
+          <h1>📊 Reporte de Historias INVEST</h1>
+          <p>
+            Análisis y estado de salud de las historias de usuario del sprint
+            actual.
+          </p>
+        </div>
+        <button id="recalibrate-btn" class="details-toggle-btn">
+          Recalibrar
+        </button>
+      </header>
+
+      <header id="report-header" class="report-header"></header>
+
+      <div class="summary-grid" id="summary-metrics">
+        <!-- Summary cards will be injected here -->
+      </div>
+
+      <div class="summary-chart-container">
+        <div>
+          <h3>Horas Estimadas por HU</h3>
+          <canvas id="points-chart"></canvas>
+        </div>
+        <div>
+          <h3>Distribución de Complejidad</h3>
+          <canvas id="complexity-chart"></canvas>
+        </div>
+      </div>
+
+      <div id="cards" class="grid"></div>
+
+      <div id="modal-container" class="modal-container hidden">
+        <div class="modal-content">
+          <span id="modal-close" class="modal-close">&times;</span>
+          <h2 id="modal-title"></h2>
+          <div id="modal-body"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/utils.js" type="module"></script>
+    <script src="js/ui.js" type="module"></script>
+    <script src="js/main.js" type="module"></script>
+  </body>
+</html>
