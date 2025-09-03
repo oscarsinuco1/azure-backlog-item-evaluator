@@ -29,6 +29,14 @@ docker run -it --rm -p 8000:8000 --name invest-analyzer \
   -e GEMINI_API_KEY="TU_API_KEY_AQUI" \
   azure-invest-analyzer
 ```
+
+or
+
+```bash
+# Install requirements.txt with pip
+
+python main.py
+```
 ## Acceder al servidor
 
 Después de correr el contenedor, abre en tu navegador: [http://localhost:8000](http://localhost:8000) Ahí podrás ver el .md generado con la evaluación de todas las HU.
