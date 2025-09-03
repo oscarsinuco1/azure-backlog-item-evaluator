@@ -6,7 +6,7 @@ import html2text
 def _get_session(pat):
     """Crea y configura una sesión de requests con la autenticación PAT."""
     session = requests.Session()
-    session.auth = HTTPBasicAuth('oscar.sinuco', pat)
+    session.auth = HTTPBasicAuth(pat, pat)
     return session
 
 def obtener_organizaciones(pat):
