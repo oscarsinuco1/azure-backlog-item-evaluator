@@ -5,7 +5,7 @@ import time
 
 # === Loader auxiliar ===
 class Loader:
-    def __init__(self, desc="Procesando...", end="Listo!", timeout=0.1):
+    def __init__(self, desc="Procesando...", end="", timeout=0.1):
         self.desc = desc
         self.end = end
         self.timeout = timeout

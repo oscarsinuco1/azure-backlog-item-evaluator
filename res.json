@@ -12,38 +12,37 @@
       "titulo": "FUNC - 25884 - Consultar Versión de Líneas",
       "evaluacion_invest": {
         "Independiente": {
-          "puntaje": 2,
-          "justificacion": "Depende de las HU de modificación (#25893, #25889) para la reutilización de la interfaz, lo que la hace no ser completamente independiente."
+          "puntaje": 3,
+          "justificacion": "La historia depende de las HU #25893 y #25889 para la presentación de la UI, lo que limita su autonomía. La lógica de consulta es independiente, pero la visualización no."
         },
         "Negociable": {
-          "puntaje": 3,
-          "justificacion": "El alcance es bastante específico en cuanto a la recuperación y presentación de datos, pero hay cierto margen en cómo se integra la UI, haciéndola parcialmente negociable."
+          "puntaje": 2,
+          "justificacion": "Los criterios de aceptación son muy prescriptivos y detallan la implementación técnica (nombres de campos, reutilización de métodos), dejando poco espacio para la negociación."
         },
         "Valiosa": {
-          "puntaje": 5,
-          "justificacion": "El valor es claro y alto: permitir a los usuarios auditar y consultar el historial de cambios de un elemento crítico de la red."
+          "puntaje": 4,
+          "justificacion": "Aporta valor al permitir a los usuarios rastrear el historial de cambios de un elemento, lo cual es crucial para la auditoría y el análisis de datos históricos."
         },
         "Estimable": {
-          "puntaje": 4,
-          "justificacion": "Los criterios de aceptación son detallados y especifican las tablas y campos, lo que facilita una estimación precisa del esfuerzo de backend y frontend."
+          "puntaje": 3,
+          "justificacion": "La estimación es incierta debido a la dependencia en la implementación de las interfaces de otras historias. El esfuerzo para integrar y adaptar esos componentes es difícil de predecir."
         },
         "Pequeña": {
-          "puntaje": 4,
-          "justificacion": "La funcionalidad es de solo lectura y se enfoca en una sola tarea (consultar versión), lo que la hace relativamente pequeña y manejable."
+          "puntaje": 3,
+          "justificacion": "El alcance es moderado. Involucra una consulta compleja, lógica de negocio para la autorización de atributos y la presentación de datos en modo de solo lectura."
         },
         "Testeable": {
           "puntaje": 5,
-          "justificacion": "Los criterios de aceptación son muy claros y específicos sobre los datos a mostrar y el estado de la UI (botones deshabilitados), lo que la hace altamente testeable."
+          "justificacion": "Los criterios de aceptación son claros, específicos y detallan los datos de entrada, el proceso y el resultado esperado, lo que facilita la creación de casos de prueba."
         }
       },
-      "puntos_historia": 3,
-      "dias_trabajo_aproximados": "2-3",
-      "complejidad": 2.5,
+      "complejidad": 3.5,
       "posibles_mejoras": [
-        "El rol de usuario 'Roles asignados' es demasiado genérico. Se debe especificar qué roles funcionales (p. ej., 'Operador de Red', 'Auditor de Datos') necesitan esta vista.",
-        "Aclarar el orden de desarrollo con respecto a las HU #25893 y #25889 para evitar bloqueos o retrabajo en el componente de UI compartido."
+        "Desacoplar la UI de las historias de modificación. Definir un componente de 'vista de solo lectura' genérico que pueda ser reutilizado.",
+        "La descripción 'Como Roles asignados' es muy genérica. Especificar los roles concretos (ej. 'Como Auditor') para clarificar el propósito.",
+        "Referenciar explícitamente la HU que define las 'reglas de autorización de Atributos' para mejorar la claridad y estimabilidad."
       ],
-      "estimacion_dias": 5.3,
+      "estimacion_dias": 7.3,
       "url": "https://dev.azure.com/XM-Mercado/b98d1df5-c2a4-4241-8000-c179906fa7b7/_workitems/edit/25884"
     },
     {
@@ -51,36 +50,35 @@
       "titulo": "FUNC- 25885 - . Administrar Líneas (Datos XM)",
       "evaluacion_invest": {
         "Independiente": {
-          "puntaje": 1,
-          "justificacion": "No es independiente. Las acciones principales (Ver/Editar, Eliminar) dependen directamente de la finalización de otras historias (#25893, #25901)."
+          "puntaje": 2,
+          "justificacion": "Tiene dependencias fuertes con otras historias (#25893, #25901, #9223) para sus acciones principales (Editar, Eliminar) y reglas de consulta, lo que impide su desarrollo y entrega autónoma."
         },
         "Negociable": {
           "puntaje": 3,
-          "justificacion": "La funcionalidad de agregar/quitar columnas ofrece negociabilidad, pero la estructura principal de la pantalla y sus filtros son rígidos."
+          "justificacion": "Aunque los campos y filtros están definidos, hay espacio para negociar la experiencia de usuario en la gestión de columnas y la interacción general con la tabla."
         },
         "Valiosa": {
-          "puntaje": 4,
-          "justificacion": "Proporciona un punto de acceso centralizado para la gestión de 'Datos XM', lo cual es valioso, pero su valor no se realiza completamente hasta que las historias dependientes estén terminadas."
+          "puntaje": 5,
+          "justificacion": "Proporciona un punto de acceso centralizado para que los roles autorizados gestionen los datos XM de las líneas, lo cual es una funcionalidad fundamental del sistema."
         },
         "Estimable": {
-          "puntaje": 3,
-          "justificacion": "La estimación es posible para la grilla y los filtros, pero la dependencia de reglas genéricas de otra HU (#9223) y de las acciones en otras HUs introduce incertidumbre."
+          "puntaje": 2,
+          "justificacion": "La estimación es difícil y de alto riesgo debido a las dependencias. El esfuerzo total depende del estado y la complejidad de las otras historias."
         },
         "Pequeña": {
           "puntaje": 3,
-          "justificacion": "La historia en sí (la pantalla de consulta) es de tamaño mediano, pero funciona como un contenedor para otras funcionalidades, lo que aumenta su alcance percibido."
+          "justificacion": "El alcance es de tamaño medio. Aunque es una sola pantalla, incluye filtros, una tabla con columnas dinámicas y la integración de acciones externas."
         },
         "Testeable": {
-          "puntaje": 4,
-          "justificacion": "Los filtros, las columnas y la presencia de los botones de acción son testeables. Sin embargo, el testeo E2E requiere las otras historias."
+          "puntaje": 5,
+          "justificacion": "Los criterios de aceptación son muy claros. Se pueden probar los filtros, la visualización de columnas y la correcta invocación de las acciones de editar/eliminar."
         }
       },
-      "puntos_historia": 5,
-      "dias_trabajo_aproximados": "4-5",
       "complejidad": 3,
       "posibles_mejoras": [
-        "Dividir la historia. Una historia para 'Consultar y filtrar Líneas (Datos XM)' y otras para las acciones. Esto mejoraría la independencia y permitiría una entrega de valor incremental.",
-        "La HU menciona la 'Creación' en la descripción, pero no se detalla en los criterios de aceptación. Se debe añadir un criterio para el botón 'Crear' o eliminar la mención."
+        "Dividir la historia: una para 'Consultar y filtrar Líneas (Datos XM)' y otras para integrar las acciones de 'Editar' y 'Eliminar' cuando sus dependencias estén listas.",
+        "Resumir o citar las 'Reglas Resultado de la Consulta de la HU #9223' directamente en la descripción para evitar la necesidad de consultar otra HU.",
+        "Definir el comportamiento esperado si las HU dependientes no están implementadas (ej. ocultar o deshabilitar los botones de acción)."
       ],
       "estimacion_dias": 6.3,
       "url": "https://dev.azure.com/XM-Mercado/b98d1df5-c2a4-4241-8000-c179906fa7b7/_workitems/edit/25885"
@@ -90,36 +88,35 @@
       "titulo": "FUNC- 25886. Administrar Líneas (Datos CIM)",
       "evaluacion_invest": {
         "Independiente": {
-          "puntaje": 1,
-          "justificacion": "No es independiente por la misma razón que la HU 25885. Depende de las historias #25889 (Editar) y #25901 (Eliminar) para ser funcional."
+          "puntaje": 2,
+          "justificacion": "Al igual que la HU 25885, tiene dependencias directas con #25889 (Editar), #25901 (Eliminar) y #9223 (Reglas), lo que la hace no independiente."
         },
         "Negociable": {
           "puntaje": 3,
-          "justificacion": "Similar a la HU 25885, la gestión de columnas es negociable, pero el resto de la funcionalidad está predefinida."
+          "justificacion": "El qué (campos, filtros) está bien definido, pero el cómo (interfaz de gestión de columnas, interacciones) es negociable."
         },
         "Valiosa": {
-          "puntaje": 4,
-          "justificacion": "Valiosa como punto de acceso para la gestión de 'Datos CIM', pero su valor completo depende de otras historias."
+          "puntaje": 5,
+          "justificacion": "Es una funcionalidad clave que permite a los usuarios administrar los datos CIM de las líneas, necesaria para la operación del sistema."
         },
         "Estimable": {
-          "puntaje": 3,
-          "justificacion": "Estimable, pero con la misma incertidumbre que la HU 25885 debido a las dependencias externas (#9223, #25889, #25901)."
+          "puntaje": 2,
+          "justificacion": "La estimación es arriesgada por las mismas razones que la HU 25885: las dependencias externas hacen que el esfuerzo real sea incierto."
         },
         "Pequeña": {
           "puntaje": 3,
-          "justificacion": "De tamaño mediano. Podría ser más pequeña si se reutilizan componentes genéricos de la pantalla de 'Datos XM'."
+          "justificacion": "Es una historia de tamaño medio, similar en esfuerzo a la HU 25885."
         },
         "Testeable": {
-          "puntaje": 4,
-          "justificacion": "Los criterios de la consulta son testeables, pero las acciones no se pueden probar de forma aislada."
+          "puntaje": 5,
+          "justificacion": "Los criterios de aceptación son específicos y permiten pruebas exhaustivas de los filtros, la tabla y las acciones."
         }
       },
-      "puntos_historia": 5,
-      "dias_trabajo_aproximados": "4-5",
       "complejidad": 3,
       "posibles_mejoras": [
-        "Considerar unificar las HU 25885 y 25886 en una sola pantalla con pestañas para 'Datos XM' y 'Datos CIM' para reducir la duplicación de esfuerzo y mejorar la consistencia de la UI.",
-        "Al igual que la HU 25885, se debe dividir para separar la consulta de las acciones, que son dependencias."
+        "Considerar la misma división que en la HU 25885: una historia para la consulta/filtrado y otras para la integración de acciones.",
+        "Dado que esta HU y la 25885 son casi idénticas, se podría crear una épica 'Administrar Datos de Líneas' con HUs hijas para evitar duplicación en la gestión.",
+        "Aclarar las reglas de la HU #9223 en la descripción."
       ],
       "estimacion_dias": 6.3,
       "url": "https://dev.azure.com/XM-Mercado/b98d1df5-c2a4-4241-8000-c179906fa7b7/_workitems/edit/25886"
@@ -129,39 +126,37 @@
       "titulo": "FUNC-25889. Crear/Modificar Líneas(Datos CIM)",
       "evaluacion_invest": {
         "Independiente": {
-          "puntaje": 2,
-          "justificacion": "Tiene una dependencia de datos con la HU #25893 para una regla de validación, lo que acopla las dos historias y dificulta el desarrollo y las pruebas independientes."
+          "puntaje": 3,
+          "justificacion": "Tiene una dependencia de validación con la HU #25893 y una dependencia de acción con la HU #25902. La dependencia de validación entre dos formularios de edición diferentes es un acoplamiento no deseado."
         },
         "Negociable": {
-          "puntaje": 1,
-          "justificacion": "No es negociable. Los criterios de aceptación son una especificación técnica detallada con validaciones muy estrictas para cada campo, dejando cero espacio para la negociación."
+          "puntaje": 2,
+          "justificacion": "La historia es una especificación técnica detallada. Los atributos, tipos de datos, validaciones y unidades están definidos de forma rígida, dejando casi nulo espacio para la negociación."
         },
         "Valiosa": {
           "puntaje": 5,
-          "justificacion": "El valor es muy alto, ya que permite la entrada y actualización de datos técnicos fundamentales para el modelo de red."
+          "justificacion": "El valor es muy alto, ya que mantener los datos CIM actualizados es fundamental para la integridad de los datos del sistema y los análisis de red."
         },
         "Estimable": {
-          "puntaje": 3,
-          "justificacion": "Aunque es muy detallada, la gran cantidad de reglas de validación complejas y condicionales hace que la estimación sea propensa a errores."
+          "puntaje": 4,
+          "justificacion": "A pesar de la dependencia, el trabajo está claramente definido. La estimación es factible, aunque la complejidad de las validaciones debe ser analizada en detalle."
         },
         "Pequeña": {
-          "puntaje": 1,
-          "justificacion": "No es pequeña. Es una historia grande que involucra un formulario con más de 14 campos, cada uno con lógica de validación específica y compleja."
+          "puntaje": 2,
+          "justificacion": "Es una historia grande. La implementación de un formulario con 14 campos y múltiples reglas de validación complejas y condicionales requiere un esfuerzo considerable."
         },
         "Testeable": {
           "puntaje": 5,
-          "justificacion": "Es extremadamente testeable. Cada regla de validación definida en los criterios de aceptación se puede convertir directamente en un caso de prueba."
+          "justificacion": "Los criterios de aceptación son extremadamente detallados, lo que permite crear un conjunto de pruebas unitarias y de integración muy completo para cada campo y regla."
         }
       },
-      "puntos_historia": 8,
-      "dias_trabajo_aproximados": "7-10",
-      "complejidad": 4.5,
+      "complejidad": 4,
       "posibles_mejoras": [
-        "Dividir la historia en partes más pequeñas. Por ejemplo: 1) Crear/Modificar Línea con los campos obligatorios para la creación. 2) Añadir validaciones de completitud para los campos restantes.",
-        "Reescribir los criterios de aceptación para que sean menos prescriptivos sobre la implementación y se centren en el comportamiento esperado desde la perspectiva del usuario.",
-        "Desacoplar la regla de validación que depende de la HU #25893. La lógica de validación debería poder acceder a los datos de 'Tipo de línea' sin depender de otra historia."
+        "Dividir la historia por grupos lógicos de atributos (ej. 'Atributos de Servicio', 'Parámetros de Secuencia Positiva', 'Parámetros de Secuencia Cero') para hacerla más manejable.",
+        "Aclarar la estrategia para manejar la dependencia de validación con la HU #25893. ¿Qué sucede si el 'Tipo de línea' no está disponible?",
+        "El botón 'Eliminar' debería ser parte de su propia historia (#25902) y no solo una acción mencionada aquí para mantener el enfoque de la HU en Crear/Modificar."
       ],
-      "estimacion_dias": 9.3,
+      "estimacion_dias": 8.3,
       "url": "https://dev.azure.com/XM-Mercado/b98d1df5-c2a4-4241-8000-c179906fa7b7/_workitems/edit/25889"
     },
     {
@@ -170,36 +165,38 @@
       "evaluacion_invest": {
         "Independiente": {
           "puntaje": 1,
-          "justificacion": "No es independiente. Es una historia 'contenedora' masiva que depende de múltiples otras HU (#8589) e invoca dinámicamente otros componentes."
+          "justificacion": "Es una historia 'orquestadora' con múltiples dependencias (#8589, y las HUs de Ver/Editar/Eliminar de cada tipo de elemento). No puede ser desarrollada de forma aislada."
         },
         "Negociable": {
-          "puntaje": 1,
-          "justificacion": "El alcance es enorme y está definido de manera muy rígida, cubriendo filtros, resultados y acciones complejas. No es negociable en su forma actual."
+          "puntaje": 3,
+          "justificacion": "Aunque los filtros y columnas están definidos, el layout general y la interacción entre las múltiples secciones y acciones podrían ser negociados."
         },
         "Valiosa": {
-          "puntaje": 5,
-          "justificacion": "El valor potencial es muy alto al crear un centro de administración unificado, pero intenta entregar demasiado valor en un solo paquete."
+          "puntaje": 4,
+          "justificacion": "Proporciona un punto de entrada unificado para la gestión de elementos, lo cual es muy valioso. Sin embargo, la cláusula 'Para' está vacía, lo que es un defecto grave en la definición de la historia."
         },
         "Estimable": {
           "puntaje": 1,
-          "justificacion": "Muy difícil de estimar con precisión debido a su tamaño y complejidad. El riesgo de subestimación es extremadamente alto."
+          "justificacion": "No es estimable en su forma actual. El alcance es demasiado grande y las dependencias son muchas. Es una épica, no una historia."
         },
         "Pequeña": {
           "puntaje": 1,
-          "justificacion": "No es una historia, es un Epic. Su alcance es demasiado grande para ser manejado en un solo sprint."
+          "justificacion": "Es una historia muy grande (una épica). Define una pantalla de gestión maestra con filtros complejos, resultados en pestañas, acciones dinámicas y lógica de permisos."
         },
         "Testeable": {
           "puntaje": 2,
-          "justificacion": "Testear esta historia en su totalidad es una tarea masiva. La cantidad de combinaciones de filtros, permisos y tipos de elementos es prohibitiva."
+          "justificacion": "Probar la historia en su totalidad es extremadamente complejo debido a la combinación de filtros, permisos, tipos de elementos y acciones. La falta de una cláusula 'Para' clara dificulta la definición del criterio de éxito final."
         }
       },
-      "puntos_historia": 8,
-      "dias_trabajo_aproximados": "15+",
       "complejidad": 5,
       "posibles_mejoras": [
-        "Descomponer esta HU en un Epic con múltiples historias de usuario más pequeñas y manejables (ej. una para la estructura base, una por cada filtro, una para la tabla de resultados, etc.).",
-        "Completar la descripción de la historia. El propósito ('Para...') está vacío, lo que oculta el objetivo final del usuario.",
-        "Priorizar las historias descompuestas para entregar valor de forma incremental, en lugar de intentar construir toda la funcionalidad de una vez."
+        "**Dividir esta épica en historias más pequeñas y manejables.**",
+        "HU 1: Implementar el selector de 'Tipo de elemento' y el botón 'Nuevo'.",
+        "HU 2: Implementar la sección de filtros de 'Datos Generales' y la lógica de consulta.",
+        "HU 3: Implementar la tabla de resultados de 'Datos Generales' con paginación y columnas por defecto.",
+        "HU 4: Implementar la funcionalidad de agregar/quitar columnas basada en permisos.",
+        "HU 5: Integrar las acciones 'Ver/Editar' y 'Eliminar' para la tabla.",
+        "**Completar la descripción de la historia. La cláusula 'Para' debe ser rellenada para articular el valor de negocio.**"
       ],
       "estimacion_dias": 10.3,
       "url": "https://dev.azure.com/XM-Mercado/b98d1df5-c2a4-4241-8000-c179906fa7b7/_workitems/edit/25892"

@@ -25,6 +25,10 @@ class DashboardRequestHandler(SimpleHTTPRequestHandler):
             # que sirve archivos desde el directorio 'public'
             super().do_GET()
 
+    def log_message(self, format, *args):
+        """Silencia los logs del servidor para mantener la salida limpia."""
+        return
+
 def start_server(port=8000):
     httpd = HTTPServer(("", port), DashboardRequestHandler)
     print(f"🌐 Servidor corriendo en http://localhost:{port}")

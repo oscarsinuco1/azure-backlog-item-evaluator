@@ -1,8 +1,10 @@
 import threading
 import json
+import webbrowser
+import time
 
 # Importar módulos refactorizados
-from src.config.config import org, project, iteration_path, max_historias, dias_sprint, dias_complejidad
+from src.config.config import org, project, iteration_path, pat, ado_api_version, max_historias, dias_sprint, dias_complejidad
 from src.azure.api import obtener_historias
 from src.evaluation.gemini import evaluar_historias_cli
 from src.logic.estimation import estimar_dias
@@ -14,7 +16,12 @@ from src.utils.loader import Loader
 
 # === MAIN ===
 if __name__ == "__main__":
-    historias = obtener_historias()
+    historias = obtener_historias(org, project, iteration_path, pat, ado_api_version, max_historias)
+
+    # Si no se encuentran historias, notificar y salir.
+    if not historias:
+        print(f"✅ No se encontraron historias de usuario en la iteración '{iteration_path}'. No hay nada que evaluar.")
+        exit()
     
     capacidad_equipo = {
         "carga": 0,  # 0% de carga
@@ -53,12 +60,15 @@ if __name__ == "__main__":
         }
         with open("res.json", "w", encoding="utf-8") as f:
             json.dump(final_data, f, indent=2, ensure_ascii=False)
-        print("✅ Resultados guardados en res.json")
-
         # Generar reporte en Markdown (descomentar si se desea usar)
         # generar_markdown("res.json", "historias_invest.md")
 
+        server_url = "http://localhost:8000"
         threading.Thread(target=start_server, daemon=True).start()
+        # Pequeña pausa para dar tiempo al servidor a iniciarse
+        time.sleep(1)
+        print(f"Abriendo el dashboard en tu navegador: {server_url}")
+        webbrowser.open(server_url)
         input("🚀 Presiona Enter para detener el servidor...\n")
     else:
         print("❌ No se pudieron obtener los resultados de la CLI.")

@@ -1,5 +1,5 @@
 requests
-markdown
-openai
 python-dotenv
 html2text
+questionary
+InquirerPy
