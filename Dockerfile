@@ -33,4 +33,4 @@ ENV AZURE_PAT=""
 ENV GEMINI_API_KEY=""
 
 # Comando por defecto: correr tu script principal
-CMD ["python", "get-hist.py"]
+CMD ["python", "main.py"]

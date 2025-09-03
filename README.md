@@ -25,10 +25,8 @@ Puedes pasar los parámetros como variables de entorno (-e) al contenedor:
 
 ```bash
 docker run -it --rm -p 8000:8000 --name invest-analyzer \
-  -e AZURE_ORG="TU_ORG_AQUI" \
-  -e AZURE_PROJECT="TU_PROYECTO_AQUI" \
-  -e AZURE_ITERATION_PATH="TU_ITERATION_PATH_AQUI" \
   -e AZURE_PAT="TU_PAT_AQUI" \
+  -e GEMINI_API_KEY="TU_API_KEY_AQUI" \
   azure-invest-analyzer
 ```
 ## Acceder al servidor
