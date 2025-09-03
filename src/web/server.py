@@ -1,6 +1,5 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer, SimpleHTTPRequestHandler
 import json
-import os
 
 # === Servidor para el Dashboard ===
 class DashboardRequestHandler(SimpleHTTPRequestHandler):
