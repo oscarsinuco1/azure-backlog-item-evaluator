@@ -33,7 +33,10 @@ docker run -it --rm -p 8000:8000 --name invest-analyzer \
 or
 
 ```bash
+# Install gemini-cli: npm install -g @google/gemini-cli
+# Login to gemini cli, execute `gemini` on a terminal.
 # Install requirements.txt with pip
+# add .env file like: AZURE_PAT="YOUR_PATH_HERE"
 
 python main.py
 ```
